@@ -13,7 +13,7 @@ spec:
         app: springyaml
     spec:
       containers:
-        - name: akannanspringbootapp 
+        - name: springyaml
           image: mypractice.azurecr.io/springyaml
           ports:
           - containerPort: 80
