@@ -50,9 +50,16 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-
-    - upload: manifests
-      artifact: manifests
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.Workspace)/manifests'
+        artifact: 'manifests'
+        publishLocation: 'pipeline'
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: 'manifests/'
+        Contents: '**/*.yml'
+        TargetFolder: '$(Pipeline.Workspace)/manifests'
 
 - stage: Deploy
   displayName: Deploy stage
