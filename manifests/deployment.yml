@@ -1,19 +1,19 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: akannanspringbootapp 
+  name: springyaml
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: akannanspringbootapp
+      app: springyaml
   template:
     metadata:
       labels:
-        app: akannanspringbootapp 
+        app: springyaml
     spec:
       containers:
         - name: akannanspringbootapp 
-          image: myacrrepo431.azurecr.io/akannanspringbootapp
+          image: mypractice.azurecr.io/springyaml
           ports:
           - containerPort: 80
