@@ -102,7 +102,7 @@ stages:
     pool:
       vmImage: $(vmImageName)
 
-    environment: 'bprasannaspringyaml.$(k8sNamespaceForPR)'
+    environment: 'akannan1087springbootapp.$(k8sNamespaceForPR)'
     strategy:
       runOnce:
         deploy:
