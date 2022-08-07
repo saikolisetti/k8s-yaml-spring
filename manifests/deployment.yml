@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: springyaml
-          image:  mypractice.azurecr.io/bprasanna881/springyaml:#{Build.BuildId}#
+          image:  mypractice.azurecr.io/springyaml
           ports:
           - containerPort: 80
