@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  pullPolicy: IfNotPresent
+  repository: mypractice.azurecr.io
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "1.21.0"
 
@@ -37,7 +37,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
   port: 80
 
 ingress:
