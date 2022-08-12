@@ -8,7 +8,7 @@ image:
   repository: spring12345.azurecr.io
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "1.21.0"
+  tag: "v1"
 
 imagePullSecrets: []
 nameOverride: ""
