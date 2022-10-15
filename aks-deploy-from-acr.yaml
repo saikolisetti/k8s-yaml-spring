@@ -19,9 +19,9 @@ spec:
         ports:
         - containerPort: 8085
         volumes:
-      - name: test-volume
+      - name: mssql-persistent-storage
         persistentVolumeClaim:
-        claimName: azure-managed-disk    
+          claimName: mssql-pvc    
 # service type loadbalancer       
 ---
 apiVersion: v1
