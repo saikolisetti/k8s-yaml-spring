@@ -18,6 +18,10 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
+        volumes:
+      - name: test-volume
+        persistentVolumeClaim:
+        claimName: azure-managed-disk    
 # service type loadbalancer       
 ---
 apiVersion: v1
