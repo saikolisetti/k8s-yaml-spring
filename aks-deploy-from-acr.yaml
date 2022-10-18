@@ -1,15 +1,21 @@
-
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: slow
+provisioner: kubernetes.io/azure-disk
+parameters:
+  storageaccounttype: Standard_LRS
+  kind: managed
+---
 #pvc provisioning
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: azure-managed-disk
-  labels:
-    app: springboot-app
+  name: my-disk-claim-1
 spec:
   accessModes:
-    - ReadWriteOnce
-  storageClassName: default
+  - ReadWriteOnce
+  storageClassName: managed-csi
   resources:
     requests:
       storage: 5Gi
@@ -40,7 +46,7 @@ spec:
       volumes:
       - name: test-volume
         persistentVolumeClaim:
-          claimName: azure-managed-disk
+          claimName: my-disk-claim-1
 # service type loadbalancer       
 ---
 apiVersion: v1
