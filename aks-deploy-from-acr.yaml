@@ -1,27 +1,4 @@
-#Storage Class
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: azure-disk
-provisioner: kubernetes.io/azure-disk
-parameters:
-  skuName: Standard_LRS
----
-#pvc provisioning
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: azure-managed-disk
-  labels:
-    app: springboot-app
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: default
-  resources:
-    requests:
-      storage: 5Gi
----
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
