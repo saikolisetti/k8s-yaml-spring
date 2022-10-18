@@ -17,14 +17,7 @@
         image: acrk8s123.azurecr.io/bprasanna881/spring-helm:#{Build.BuildId}#
         imagePullPolicy: Always
         ports:
-        - containerPort: 8085
-        volumeMounts:
-         - mountPath: /test-pd 
-           name: test-volume
-      volumes:
-      - name: test-volume
-        persistentVolumeClaim:
-          claimName: azure-managed-disk    
+        - containerPort: 8085 
         
 # service type loadbalancer       
 ---
