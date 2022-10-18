@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: my-springboot-deployment
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: springboot-app
@@ -24,9 +24,9 @@ spec:
       volumes:
       - name: test-volume
         persistentVolumeClaim:
-          claimName: my-disk-claim-1
-# service type loadbalancer       
+          claimName: my-disk-claim-1     
 ---
+# service type loadbalancer
 apiVersion: v1
 kind: Service
 metadata:
@@ -42,8 +42,10 @@ spec:
     targetPort: 8085
   type: LoadBalancer
   selector:
-    app: springboot-app#pvc provisioning
+    app: springboot-app
 ---
+#pvc provisioning
+
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
