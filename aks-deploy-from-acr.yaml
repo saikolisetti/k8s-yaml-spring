@@ -1,8 +1,8 @@
-  apiVersion: apps/v1
-  kind: Deployment
-  metadata:
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: my-springboot-deployment
-  spec:
+spec:
   replicas: 3
   selector:
     matchLabels:
@@ -17,8 +17,7 @@
         image: akspvc.azurecr.io/bprasanna881/spring-aks:#{Build.BuildId}#
         imagePullPolicy: Always
         ports:
-        - containerPort: 8085 
-        
+        - containerPort: 8085
 # service type loadbalancer       
 ---
 apiVersion: v1
