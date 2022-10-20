@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: my-springboot-deployment
-  namespace : dev
 spec:
   replicas: 5
   selector:
@@ -36,7 +35,6 @@ metadata:
     app: springboot-app
     k8s-app: springboot-app
   name: springboot-app
-  namespace : dev
 spec:
   ports:
   - name: http
