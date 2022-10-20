@@ -17,21 +17,16 @@ spec:
       - name: my-springboot-app
         image: akspvc.azurecr.io/bprasanna881/spring-aks:#{Build.BuildId}#
         imagePullPolicy: Always
-        env:
-          - name: ConnectionStrings__WebAppContext
-            valueFrom:
-              configMapKeyRef:
-                name: mssql-connection-configmap
-                key: db-connection-string
         ports:
         - containerPort: 8085
         volumeMounts:
-            - mountPath: /test-pd
-              name: test-volume
+            - name: foo
+              mountPath: "/etc/foo"
+              readOnly: true
       volumes:
-      - name: test-volume
-        persistentVolumeClaim:
-          claimName: my-disk-claim-1     
+      - name: foo 
+        secret:
+          secretName: mssql-secret      
 ---
 # service type loadbalancer
 apiVersion: v1
@@ -52,33 +47,13 @@ spec:
   selector:
     app: springboot-app
 ---
-#pvc provisioning
-
+# secrets
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: Secret
 metadata:
-  name: my-disk-claim-1
-  namespace : dev
-  labels:
-    app: springboot-app
-spec:
-  accessModes:
-  - ReadWriteOnce
-  storageClassName: default
-  resources:
-    requests:
-      storage: 20Gi
----
-# configmap
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mssql-connection-configmap
-  labels:
-    app: webapp
+  name:  mssql-secret
 data:
-  # db-connection-string: Server=tcp:refinitiv-sql-01.database.windows.net,1433;Initial Catalog=ProdcutsDB;Persist Security Info=False;User ID=houssem;Password=@Aa123456789;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-  db-connection-string: Server=mssql-service;Database=ProdcutsDB;User ID=SA;Password=@Aa123456;
-
+   db-connection-string-secret: U2VydmVyPW1zc3FsLXNlcnZpY2U7RGF0YWJhc2U9UHJvZGN1dHNEQjtVc2VyPVNBO1Bhc3N3b3JkPUBBYTEyMzQ1Njs=
+type: Opaque
 
 
