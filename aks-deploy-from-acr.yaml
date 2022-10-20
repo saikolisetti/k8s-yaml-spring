@@ -18,14 +18,18 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
-        volumeMounts:
-            - name: foo
-              mountPath: "/etc/foo"
-              readOnly: true
-      volumes:
-      - name: foo 
-        secret:
-          secretName: mssql-secret      
+        env:
+          - name: SECRET_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: username 
+          - name: SECRET_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: password 
+      restartPolicy: Never          
 ---
 # service type loadbalancer
 apiVersion: v1
@@ -47,11 +51,11 @@ spec:
 ---
 # secrets
 apiVersion: v1
-kind: Secret
+kind: Secret 
 metadata:
-  name:  mssql-secret
-data:
-   db-connection-string-secret: U2VydmVyPW1zc3FsLXNlcnZpY2U7RGF0YWJhc2U9UHJvZGN1dHNEQjtVc2VyPVNBO1Bhc3N3b3JkPUBBYTEyMzQ1Njs=
+  name: mysecret
 type: Opaque
-
+data:
+  username: YWRtaW4=
+  password: MWYyZDFlMmU2N2Rm
 
