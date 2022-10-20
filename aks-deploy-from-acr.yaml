@@ -29,8 +29,7 @@ spec:
               secretKeyRef:
                 name: mysecret
                 key: password 
-      restartPolicy: Never          
----
+    
 # service type loadbalancer
 apiVersion: v1
 kind: Service
