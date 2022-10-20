@@ -28,8 +28,8 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: mysecret
-                key: password 
-    
+                key: password        
+---
 # service type loadbalancer
 apiVersion: v1
 kind: Service
