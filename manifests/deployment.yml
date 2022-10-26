@@ -17,3 +17,10 @@ spec:
           image:  akspvc.azurecr.io/springyaml
           ports:
           - containerPort: 80
+          volumeMounts:
+            - mountPath: /test-pd
+              name: test-volume
+      volumes:
+      - name: test-volume
+        persistentVolumeClaim:
+          claimName: my-disk-claim-1   
