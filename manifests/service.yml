@@ -6,5 +6,7 @@ spec:
     type: LoadBalancer
     ports:
     - port: 80 
+      protocol: TCP
+      targetPort: 8085
     selector:
         app: springyaml
