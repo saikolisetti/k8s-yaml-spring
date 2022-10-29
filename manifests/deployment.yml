@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: springyaml
-          image:  promth.azurecr.io/springyaml
+          image: promth.azurecr.io/springyaml
           ports:
           - containerPort: 80
           volumeMounts:
