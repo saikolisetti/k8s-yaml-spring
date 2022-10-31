@@ -86,7 +86,8 @@ stages:
                 $(imagePullSecret)
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
-jobs:
+- stage: 'Dev_Deploy'
+  jobs:
   - deployment: Deploy
     displayName: Deploy-DEV
     pool:
