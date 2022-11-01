@@ -57,9 +57,8 @@ stages:
 - stage: 'Deploy_DEV'
   displayName: Deploy dev
   dependsOn: Build
-
   jobs:
-  - deployment: Deployweb
+  - deployment: 'Dev_Deploy_WebApp'
     displayName: Deploy web app
     pool:
       vmImage: $(vmImageName)
@@ -90,9 +89,8 @@ stages:
 - stage: 'Deploy_PROD'
   displayName: Deploy prod
   dependsOn: Build
-
   jobs:
-  - deployment: Deployweb
+  - deployment: 'Prod_Deploy_WebApp'
     displayName: Deploy PROD 
     pool:
       vmImage: $(vmImageName)
