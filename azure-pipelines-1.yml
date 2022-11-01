@@ -55,11 +55,11 @@ stages:
       artifact: manifests
 
 - stage: 'Deploy_DEV'
-  displayName: Deploy dev
+  displayName: 'Deploy dev'
   dependsOn: Build
   jobs:
   - deployment: 'Dev_Deploy_WebApp'
-    displayName: Deploy web app
+    displayName: 'Deploy web app'
     pool:
       vmImage: $(vmImageName)
     environment: 'DEV.default'
@@ -87,11 +87,11 @@ stages:
                 $(containerRegistry)/$(imageRepository):$(tag)
 
 - stage: 'Deploy_PROD'
-  displayName: Deploy prod
+  displayName: 'Deploy prod'
   dependsOn: Build
   jobs:
   - deployment: 'Prod_Deploy_WebApp'
-    displayName: Deploy PROD 
+    displayName: 'Deploy PROD'
     pool:
       vmImage: $(vmImageName)
     # Creates an environment if it doesn't exist.
