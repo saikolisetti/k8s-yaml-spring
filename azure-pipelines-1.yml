@@ -89,7 +89,7 @@ stages:
  
   jobs:
   - deployment: Deploy
-    displayName: prod
+    displayName: pro
     pool:
       vmImage: $(vmImageName)
     environment: 'PROD.default'
