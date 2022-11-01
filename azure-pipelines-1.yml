@@ -54,7 +54,7 @@ stages:
     - upload: manifests
       artifact: manifests
 
-- stage: Deploy
+- stage: Deploy-DEV
   displayName: Deploy dev
   dependsOn: Build
 
@@ -87,7 +87,7 @@ stages:
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
 
-- stage: Deploy
+- stage: Deploy-PROD
   displayName: Deploy prod
   dependsOn: Build
 
