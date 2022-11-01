@@ -59,7 +59,7 @@ stages:
   dependsOn: Build
   jobs:
   - deployment: 'Dev_Deploy_WebApp'
-    displayName: 'Deploy web app'
+    displayName: 'Deploy DEV'
     pool:
       vmImage: $(vmImageName)
     environment: 'DEV.default'
@@ -86,9 +86,43 @@ stages:
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
 
+- stage: 'Deploy_QA'
+  displayName: 'Deploy qa'
+  dependsOn: 'Deploy_DEV'
+  jobs:
+  - deployment: 'Prod_Deploy_WebApp'
+    displayName: 'Deploy QA'
+    pool:
+      vmImage: $(vmImageName)
+    # Creates an environment if it doesn't exist.
+    environment: 'QA.default'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: KubernetesManifest@0
+            displayName: Create imagePullSecret
+            inputs:
+              action: createSecret
+              secretName: $(imagePullSecret)
+              dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
+
+          - task: KubernetesManifest@0
+            displayName: Deploy to Kubernetes cluster
+            inputs:
+              action: deploy
+              manifests: |
+                $(Pipeline.Workspace)/manifests/deployment.yml
+                $(Pipeline.Workspace)/manifests/service.yml
+              imagePullSecrets: |
+                $(imagePullSecret)
+              containers: |
+                $(containerRegistry)/$(imageRepository):$(tag)
+
+
 - stage: 'Deploy_PROD'
   displayName: 'Deploy prod'
-  dependsOn: 'Deploy_DEV'
+  dependsOn: 'Deploy_QA'
   jobs:
   - deployment: 'Prod_Deploy_WebApp'
     displayName: 'Deploy PROD'
