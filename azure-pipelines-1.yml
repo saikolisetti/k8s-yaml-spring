@@ -86,13 +86,10 @@ stages:
                 $(imagePullSecret)
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
-- stage: Deploy
-  displayName: Deploy prod
-  dependsOn: Build
-
+ 
   jobs:
   - deployment: Deploy
-    displayName: Deploy
+    displayName: prod
     pool:
       vmImage: $(vmImageName)
     environment: 'PROD.default'
