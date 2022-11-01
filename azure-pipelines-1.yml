@@ -54,7 +54,7 @@ stages:
     - upload: manifests
       artifact: manifests
 
-- stage: 'Dev_Deploy'
+- stage: Deploy
   displayName: Deploy 
   dependsOn: Build
 
