@@ -96,6 +96,7 @@ stages:
     displayName: Deploy PROD 
     pool:
       vmImage: $(vmImageName)
+    # Creates an environment if it doesn't exist.
     environment: 'PROD.default'
     strategy:
       runOnce:
