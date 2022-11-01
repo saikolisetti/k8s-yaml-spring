@@ -63,6 +63,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
+    environment: 'bprasanna881k8syamlspring.default'
     strategy:
       runOnce:
         deploy:
