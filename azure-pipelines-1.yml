@@ -96,7 +96,7 @@ stages:
     displayName: pro
     pool:
       vmImage: $(vmImageName)
-    environment: 'PROD.default'
+    environment: 'PROD'
     strategy:
       runOnce:
         deploy:
