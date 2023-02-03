@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: my-springboot-app
-        image: akspvc.azurecr.io/bprasanna881/spring-aks:#{Build.BuildId}#
+        image: k8spractice.azurecr.io/saikolisetti/k8s-yaml-spring:#{Build.BuildId}#
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
