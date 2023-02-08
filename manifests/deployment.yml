@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: springyaml
-          image: kaksacr12345.azurecr.io/springyaml
+          image: k8spractice.azurecr.io/springyaml
           ports:
           - containerPort: 80
           
